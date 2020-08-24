@@ -1,10 +1,10 @@
-## Pair of functions that cache the inverse of a matrix.
-## For this assignment, assume that the matrix supplied is always invertible
+## Assignment 2: Lexical Scoping
+## Pair of functions that cache the inverse of a matrix. For this 
+## assignment, assume that the matrix supplied is always invertible
 
-## This function creates a special "matrix" object that can cache its inverse.
-## Example:
-## x = makeCacheMatrix(matrix(1:4, 2, 2))
-## x$get()
+## This function creates a special "matrix" object that can cache its
+## inverse.
+
 makeCacheMatrix <- function(x = matrix()) {
   inv <- NULL
   set <- function(y) {
@@ -20,13 +20,11 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## This function computes the inverse of the special "matrix" returned by makeCacheMatrix above.
-## If the inverse has already been calculated, then the cachesolve should retrieve the inverse from the cache.
-## Example: 
-## x = makeCacheMatrix(matrix(1:4, 2, 2))
-## x$get()
-## cacheSolve(x) # computes the inverse of the matrix returned by makeCacheMatrix
-## cacheSolve(x) # retrieves the inverse from the cache.
+## This function computes the inverse of the special "matrix"returned by 
+## makeCacheMatrix above. If the inverse has already been calculated, 
+## then the cachesolve should retrieve the inverse from the cache.
+## NOTE: Function 'solve' returns the inverse of a matrix
+
 cacheSolve <- function(x, ...) {
   ## Return a matrix that is the inverse of 'x'
   inv <- x$getinverse()
@@ -35,7 +33,13 @@ cacheSolve <- function(x, ...) {
     return(inv)
   }
   data <- x$get()
-  inv <- solve(data, ...) ## function 'solve' returns the inverse of a matrix
+  inv <- solve(data, ...)
   x$setinverse(inv)
   inv
 }
+
+## Example:
+x = makeCacheMatrix(matrix(1:4, 2, 2))
+x$get()
+cacheSolve(x) # computes the inverse of the matrix returned by makeCacheMatrix
+cacheSolve(x) # retrieves the inverse from the cache.
